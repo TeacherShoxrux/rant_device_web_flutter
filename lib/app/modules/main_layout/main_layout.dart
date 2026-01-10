@@ -85,7 +85,6 @@ static  final bookingItemsMock = [
       pricePerDay: 200000,
     ),
   ];
-
   final pages = [
   const CustomersPage(),
     SkladPage(),
