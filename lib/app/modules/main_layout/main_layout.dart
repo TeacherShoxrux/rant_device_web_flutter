@@ -7,14 +7,14 @@ import '../category_brand_technica/category_brand_technica_page.dart';
 import '../report/report.dart';
 import '../sklad/sklad_page.dart';
 
-class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key});
+class MainLayout extends StatefulWidget {
+  const MainLayout({super.key});
 
   @override
-  State<DashboardPage> createState() => _DashboardPageState();
+  State<MainLayout> createState() => _DashboardPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class _DashboardPageState extends State<MainLayout> {
   int selectedIndex = 0;
 
   final menus = [
@@ -49,50 +49,34 @@ class _DashboardPageState extends State<DashboardPage> {
       returned: true,
     ),
   ];
-static  final reportMock = [
-  RentalReportRow(
-    customer: "Rustam Axmerov",
-    item: "Canon R5",
-    start: DateTime(2025, 1, 5),
-    end: DateTime(2025, 1, 8),
-    price: 900000,
-  ),
-  RentalReportRow(
-    customer: "Shoxrux Karimov",
-    item: "DJI RS3",
-    start: DateTime(2025, 1, 3),
-    end: DateTime(2025, 1, 6),
-    price: 600000,
-  ),
-];
-static  final bookingItemsMock = [
-    BookingItem(
-      id: 1,
-      name: "Canon R5",
-      brand: "Canon",
-      pricePerDay: 300000,
+  static final reportMock = [
+    RentalReportRow(
+      customer: "Rustam Axmerov",
+      item: "Canon R5",
+      start: DateTime(2025, 1, 5),
+      end: DateTime(2025, 1, 8),
+      price: 900000,
     ),
-    BookingItem(
-      id: 2,
-      name: "Sony A7 IV",
-      brand: "Sony",
-      pricePerDay: 280000,
-    ),
-    BookingItem(
-      id: 3,
-      name: "DJI RS3 Pro",
-      brand: "DJI",
-      pricePerDay: 200000,
+    RentalReportRow(
+      customer: "Shoxrux Karimov",
+      item: "DJI RS3",
+      start: DateTime(2025, 1, 3),
+      end: DateTime(2025, 1, 6),
+      price: 600000,
     ),
   ];
+  static final bookingItemsMock = [
+    BookingItem(id: 1, name: "Canon R5", brand: "Canon", pricePerDay: 300000),
+    BookingItem(id: 2, name: "Sony A7 IV", brand: "Sony", pricePerDay: 280000),
+    BookingItem(id: 3, name: "DJI RS3 Pro", brand: "DJI", pricePerDay: 200000),
+  ];
   final pages = [
-  const CustomersPage(),
+    const CustomersPage(),
     SkladPage(),
-
-   RentedItemsPage(rentals: rentalsMock),
+    RentedItemsPage(rentals: rentalsMock),
     BookingPage(items: bookingItemsMock),
     const BrandCategoryEquipmentPage(),
-    ReportsPage( data: reportMock,)
+    ReportsPage(data: reportMock),
   ];
 
   @override
@@ -105,9 +89,9 @@ static  final bookingItemsMock = [
           appBar: isDesktop
               ? _desktopAppBar()
               : AppBar(
-            title: const Text("Rental System"),
-            backgroundColor:Colors.blueAccent,
-          ),
+                  title: const Text("Rental System"),
+                  backgroundColor: Colors.blueAccent,
+                ),
 
           drawer: isDesktop ? null : _mobileDrawer(),
 
@@ -122,7 +106,7 @@ static  final bookingItemsMock = [
 
   PreferredSizeWidget _desktopAppBar() {
     return AppBar(
-      backgroundColor:Colors.blueAccent,
+      backgroundColor: Colors.blueAccent,
       title: Row(
         children: [
           const Icon(Icons.camera_alt),
@@ -138,8 +122,10 @@ static  final bookingItemsMock = [
                 setState(() => selectedIndex = index);
               },
               child: Container(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 8,
+                ),
                 margin: const EdgeInsets.symmetric(horizontal: 4),
                 decoration: BoxDecoration(
                   color: isActive ? Colors.blue : Colors.transparent,
@@ -192,6 +178,4 @@ static  final bookingItemsMock = [
       ),
     );
   }
-
-
 }

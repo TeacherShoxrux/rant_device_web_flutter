@@ -1,5 +1,8 @@
+import 'package:dream_art_app/app/modules/customer/widgets/header_widget.dart';
+import 'package:dream_art_app/app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
+import '../../widgets/custom_elevated_button_icon.dart';
 import 'customer_create_alert/add_customer_dialog.dart';
 
 class CustomersPage extends StatelessWidget {
@@ -16,7 +19,7 @@ class CustomersPage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _header(context),
+        HeaderWidget(onPressed: () { openAddCustomerDialog(context); },),
         const SizedBox(height: 16),
         _filters(context),
         const SizedBox(height: 16),
@@ -24,23 +27,7 @@ class CustomersPage extends StatelessWidget {
       ],
     );
   }
-  Widget _header(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Text(
-          "Ro'yxatdan o‘tgan mijozlar ro‘yxati",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        ElevatedButton.icon(
-          onPressed: () => openAddCustomerDialog(context),
-          icon: const Icon(Icons.add),
-          label: const Text("Yangi mijoz qo‘shish"),
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-        )
-      ],
-    );
-  }
+
   Widget _filters(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final columns = width > 1100 ? 4 : width > 700 ? 2 : 1;
@@ -49,25 +36,18 @@ class CustomersPage extends StatelessWidget {
       spacing: 12,
       runSpacing: 12,
       children: [
-        _input("F.I.SH"),
-        _input("Passport ma’lumotlari"),
-        _input("Jinsi"),
-        _input("JSHSHIR"),
-        _input("Telefon raqami"),
+        CustomTextfield(hint: "FISH"),
+        CustomTextfield(hint: "Passport ma’lumotlari"),
+        CustomTextfield(hint: "Jinsi"),
+        CustomTextfield(hint: "JSHSHIR"),
+        CustomTextfield(hint: "Telefon raqami"),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ElevatedButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.search),
-              label: const Text("Qidiruv"),
-            ),
+            CustomElevatedButtonIcon(onPressed: () {  }, text: 'Qidirish', icon: const Icon(Icons.search),),
             const SizedBox(width: 8),
-            OutlinedButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.refresh),
-              label: const Text("Tozalash"),
-            ),
+            CustomElevatedButtonIcon(onPressed: () {  }, text: 'Tozalash', icon: const Icon(Icons.refresh_outlined),),
+
           ],
         )
       ].map((e) {
@@ -79,15 +59,7 @@ class CustomersPage extends StatelessWidget {
     );
   }
 
-  Widget _input(String hint) {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: hint,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-        isDense: true,
-      ),
-    );
-  }
+
   Widget _responsiveTable(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return width > 900 ? _desktopTable() : _mobileList();
