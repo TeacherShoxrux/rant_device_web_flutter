@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../booking/booking_page.dart';
 import '../category_brand_technica/category_brand_technica_page.dart';
+import '../rent_items/rent_details/rent_details.dart';
 import '../report/report.dart';
 import '../sklad/sklad_page.dart';
 
@@ -25,7 +26,7 @@ class _DashboardPageState extends State<MainLayout> {
     "Admin panel",
     "Xisobotlar",
   ];
-  static final rentalsMock = [
+  static final rentalsMocks = [
     Rental(
       id: 1,
       customerName: "Rustam Axmerov",
@@ -73,7 +74,7 @@ class _DashboardPageState extends State<MainLayout> {
   final pages = [
     const CustomersPage(),
     SkladPage(),
-    RentedItemsPage(rentals: rentalsMock),
+    RentedItemsPages(rentals: rentalsMocks),
     BookingPage(items: bookingItemsMock),
     const BrandCategoryEquipmentPage(),
     ReportsPage(data: reportMock),

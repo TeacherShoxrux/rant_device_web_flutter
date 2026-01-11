@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// =======================
-/// MODELLAR
-/// =======================
+import '../customer/csutomer_selection_widget/CustomerSelectPanel.dart';
 class BookingItem {
   final int id;
   final String name;
@@ -27,12 +25,8 @@ class Booking {
   });
 }
 
-/// =======================
-/// BOOKING PAGE
-/// =======================
 class BookingPage extends StatefulWidget {
   final List<BookingItem> items;
-
   const BookingPage({super.key, required this.items});
 
   @override
@@ -42,6 +36,71 @@ class BookingPage extends StatefulWidget {
 class _BookingPageState extends State<BookingPage> {
   BookingItem? _selectedItem;
   DateTimeRange? _selectedRange;
+
+  Customer? selectedCustomer;
+  final List<Customer> mockCustomers = [
+    Customer(
+      id: 1,
+      fullName: "Rustam Axmerov",
+      phone: "+998901234567",
+      passport: "AA1234567",
+    ),
+    Customer(
+      id: 2,
+      fullName: "Shoxrux Karimov",
+      phone: "+998933456789",
+      passport: "AB7654321",
+    ),
+    Customer(
+      id: 3,
+      fullName: "Jasmin Abdujalilova",
+      phone: "+998991112233",
+      passport: "AC9988776",
+    ),
+    Customer(
+      id: 4,
+      fullName: "Javohir Qudratov",
+      phone: "+998946667788",
+      passport: "AD4455667",
+    ),
+    Customer(
+      id: 5,
+      fullName: "Shavkat Sapashov",
+      phone: "+998977889900",
+      passport: "AE1122334",
+    ),
+    Customer(
+      id: 6,
+      fullName: "Milena Avanesyan",
+      phone: "+998909876543",
+      passport: "AF5566778",
+    ),
+    Customer(
+      id: 7,
+      fullName: "Asliddin Rustamov",
+      phone: "+998931234890",
+      passport: "AG3344556",
+    ),
+    Customer(
+      id: 8,
+      fullName: "Fayzullo Bahromov",
+      phone: "+998995554433",
+      passport: "AH7788990",
+    ),
+    Customer(
+      id: 9,
+      fullName: "Shoxsanam Shoni",
+      phone: "+998947770011",
+      passport: "AI2233445",
+    ),
+    Customer(
+      id: 10,
+      fullName: "Abdurashid Xamidov",
+      phone: "+998901112233",
+      passport: "AJ6677889",
+    ),
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +122,13 @@ class _BookingPageState extends State<BookingPage> {
             child: isDesktop
                 ? Row(
               children: [
-                Expanded(child: _itemsList()),
+               Expanded(child: CustomerSelectPanel(
+              customers: mockCustomers,
+              onSelected: (customer) {
+                selectedCustomer = customer;
+                // Sklad / cart / ijara logikasi shu yerda
+              },
+            ),),
                 const SizedBox(width: 16),
                 SizedBox(width: 360, child: _bookingPanel(context)),
               ],

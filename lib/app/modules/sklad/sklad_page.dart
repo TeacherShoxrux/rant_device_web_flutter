@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../customer/csutomer_selection_widget/CustomerSelectPanel.dart';
 
-class SkladPage extends StatelessWidget {
-  SkladPage({super.key});
+class SkladPage extends StatefulWidget {
+  const SkladPage({super.key});
+
+  @override
+  State<SkladPage> createState() => _SkladPageState();
+}
+
+class _SkladPageState extends State<SkladPage> {
   final List<Customer> mockCustomers = [
     Customer(
       id: 1,
@@ -88,32 +94,8 @@ class SkladPage extends StatelessWidget {
       ],
     );
   }
-  Widget _leftInfoPanel() {
-    return Container(
-      width: 260,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        border: Border(right: BorderSide(color: Colors.grey.shade300)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text(
-            "Mijoz tanlanmagan!",
-            style: TextStyle(
-              color: Colors.red,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 24),
-          Icon(Icons.inventory_2_outlined,
-              size: 64, color: Colors.grey),
-          SizedBox(height: 8),
-          Text("No data", style: TextStyle(color: Colors.grey)),
-        ],
-      ),
-    );
-  }
+
+
   Widget _rightContent(BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
@@ -213,6 +195,7 @@ class SkladPage extends StatelessWidget {
       itemBuilder: (_, index) => _productCard(),
     );
   }
+
   Widget _productCard() {
     return Card(
       elevation: 2,
@@ -256,8 +239,4 @@ class SkladPage extends StatelessWidget {
       ),
     );
   }
-
-
-
-
 }
