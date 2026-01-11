@@ -1,7 +1,6 @@
 import 'package:dream_art_app/app/modules/customer/widgets/header_widget.dart';
 import 'package:dream_art_app/app/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
-
 import '../../widgets/custom_elevated_button_icon.dart';
 import 'customer_create_alert/add_customer_dialog.dart';
 
@@ -31,7 +30,6 @@ class CustomersPage extends StatelessWidget {
   Widget _filters(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final columns = width > 1100 ? 4 : width > 700 ? 2 : 1;
-
     return Wrap(
       spacing: 12,
       runSpacing: 12,
@@ -78,7 +76,7 @@ class CustomersPage extends StatelessWidget {
           DataColumn(label: Text("Holat")),
           DataColumn(label: Text("Amallar")),
         ],
-        rows: List.generate(10, (index) {
+        rows: List.generate(15, (index) {
           return DataRow(cells: [
             DataCell(Text("${index + 1}")),
             const DataCell(Text("123123123123")),
@@ -118,7 +116,7 @@ class CustomersPage extends StatelessWidget {
   }
   Widget _mobileList() {
     return ListView.builder(
-      itemCount: 10,
+      itemCount: 15,
       itemBuilder: (context, index) {
         return Card(
           margin: const EdgeInsets.only(bottom: 12),
