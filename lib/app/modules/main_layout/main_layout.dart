@@ -52,6 +52,7 @@ class _DashboardPageState extends State<MainLayout> {
       returned: true,
     ),
   ];
+
   static final reportMock = [
     RentalReportRow(
       customer: "Rustam Axmerov",
@@ -68,6 +69,7 @@ class _DashboardPageState extends State<MainLayout> {
       price: 600000,
     ),
   ];
+
   static final bookingItemsMock = [
     BookingItem(id: 1, name: "Canon R5", brand: "Canon", pricePerDay: 300000),
     BookingItem(id: 2, name: "Sony A7 IV", brand: "Sony", pricePerDay: 280000),
