@@ -3,6 +3,7 @@ import 'package:dream_art_app/app/modules/rent_items/rent_item_page.dart';
 import 'package:flutter/material.dart';
 
 import '../booking/booking_page.dart';
+import '../cart/cart_page.dart';
 import '../category_brand_technica/category_brand_technica_page.dart';
 import '../rent_items/rent_details/rent_details.dart';
 import '../report/report.dart';
@@ -25,6 +26,7 @@ class _DashboardPageState extends State<MainLayout> {
     "Bron qilinganlar",
     "Admin panel",
     "Xisobotlar",
+    // "Xisobotlar",
   ];
   static final rentalsMocks = [
     Rental(
@@ -77,7 +79,9 @@ class _DashboardPageState extends State<MainLayout> {
     RentedItemsPages(rentals: rentalsMocks),
     BookingPage(items: bookingItemsMock),
     const BrandCategoryEquipmentPage(),
-    ReportsPage(data: reportMock),
+    // ReportsPage(data: reportMock),
+   CartPage()
+
   ];
 
   @override
