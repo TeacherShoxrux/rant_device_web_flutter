@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 
+import "customer_selection_page.dart";
+
 class CartPage extends StatefulWidget {
   @override
   _CartPageState createState() => _CartPageState();
@@ -46,13 +48,19 @@ class _CartPageState extends State<CartPage> {
                 return Card(
                   margin: EdgeInsets.all(10),
                   child: ListTile(
-                    leading: Image.network(item.imageUrl, width: 60, fit: BoxFit.cover),
+                    leading: Image.network("https://picsum.photos/200/300", width: 60, fit: BoxFit.cover),
                     title: Text(item.name, style: TextStyle(fontWeight: FontWeight.bold)),
                     subtitle: Text("${item.pricePerDay} \$ / kuniga"),
-                    trailing: Row(
+                    trailing:Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        IconButton(
+                        item.rentalDays == 1?IconButton(
+                    icon: Icon(Icons.delete_forever,color: Colors.red,),
+                    onPressed: () {
+                      setState(() {
+                        cartItems.removeAt(index);
+                      });
+                    }):IconButton(
                           icon: Icon(Icons.remove_circle_outline),
                           onPressed: () {
                             setState(() {
@@ -60,7 +68,7 @@ class _CartPageState extends State<CartPage> {
                             });
                           },
                         ),
-                        Text("${item.rentalDays} kun", style: TextStyle(fontSize: 16)),
+                        Text("${item.rentalDays} dona", style: TextStyle(fontSize: 16)),
                         IconButton(
                           icon: Icon(Icons.add_circle_outline),
                           onPressed: () {
@@ -96,36 +104,92 @@ class _CartPageState extends State<CartPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Umumiy summa:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              Text("${totalPrice} \$", style: TextStyle(fontSize: 20, color: Colors.green, fontWeight: FontWeight.bold)),
+              Text("$totalPrice \$", style: TextStyle(fontSize: 20, color: Colors.green, fontWeight: FontWeight.bold)),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.remove_circle_outline),
+                    onPressed: () {
+                      setState(() {
+                        // if (item.rentalDays > 1) item.rentalDays--;
+                      });
+                    },
+                  ),
+                  Text("\$ kun", style: TextStyle(fontSize: 16)),
+                  IconButton(
+                    icon: Icon(Icons.add_circle_outline),
+                    onPressed: () {
+                      setState(() {
+                        // item.rentalDays++;
+                      });
+                    },
+                  ),
+                ],
+              ),
             ],
           ),
           SizedBox(height: 20),
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              onPressed: () {
-                // Bu yerda C# / ASP.NET API ga so'rov yuboriladi
-                _showBookingSuccess();
-              },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blueAccent),
-              child: Text("HOZIROQ BRON QILISH", style: TextStyle(fontSize: 16, color: Colors.white)),
-            ),
-          )
+          Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Bu yerda C# / ASP.NET API ga so'rov yuboriladi
+                      _showBookingSuccess();
+                    },
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.yellow),
+                    child: Text("Band qilish", style: TextStyle(fontSize: 16, color: Colors.black)),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Bu yerda C# / ASP.NET API ga so'rov yuboriladi
+                      _showBookingSuccess();
+                    },
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                    child: Text("Ijaraga berish", style: TextStyle(fontSize: 16, color: Colors.white)),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
   }
 
-  void _showBookingSuccess() {
-    showDialog(
+  void _showBookingSuccess()async {
+    final result = await showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text("Muvaffaqiyatli!"),
-        content: Text("Sizning buyurtmangiz qabul qilindi. Tez orada operator bog'lanadi."),
-        actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text("OK"))],
+      builder: (context) => SafeWebDialog(
+        customers: List.generate(20, (index) => "Mijoz #${index + 1}"),
       ),
     );
+    if (result != null) {
+      // Saqlash logikasi
+    }
+
+
+
+    // showDialog(
+    //   context: context,
+    //   builder: (context) =>
+    //   WebResponsiveDialog(customers: [],)
+    //   //     AlertDialog(
+    //   //   title: Text("Muvaffaqiyatli!"),
+    //   //   content: Text("Sizning buyurtmangiz qabul qilindi. Tez orada operator bog'lanadi."),
+    //   //   actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text("OK"))],
+    //   // ),
+    // );
   }
 }
 

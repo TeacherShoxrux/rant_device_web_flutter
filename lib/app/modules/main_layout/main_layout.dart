@@ -81,8 +81,8 @@ class _DashboardPageState extends State<MainLayout> {
     RentedItemsPages(rentals: rentalsMocks),
     BookingPage(items: bookingItemsMock),
     const BrandCategoryEquipmentPage(),
-    // ReportsPage(data: reportMock),
-   CartPage()
+    ReportsPage(data: reportMock),
+
 
   ];
 
@@ -148,7 +148,10 @@ class _DashboardPageState extends State<MainLayout> {
 
           const Spacer(),
 
-          const Icon(Icons.shopping_cart),
+          IconButton(icon: const   Icon(Icons.shopping_cart), onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
+
+          },),
           const SizedBox(width: 16),
           const CircleAvatar(child: Text("U")),
         ],
