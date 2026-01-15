@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// =======================
-/// MODEL
-/// =======================
 class Customer {
   final int id;
   final String fullName;
@@ -17,9 +14,6 @@ class Customer {
   });
 }
 
-/// =======================
-/// WIDGET
-/// =======================
 class CustomerSelectPanel extends StatefulWidget {
   final List<Customer> customers;
   final ValueChanged<Customer?> onSelected;
@@ -76,7 +70,6 @@ class _CustomerSelectPanelState extends State<CustomerSelectPanel> {
     });
     widget.onSelected(null);
   }
-
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../customer/csutomer_selection_widget/CustomerSelectPanel.dart';
+
 class SafeWebDialog extends StatefulWidget {
   final List<String> customers;
   const SafeWebDialog({super.key, required this.customers});
@@ -10,6 +12,68 @@ class SafeWebDialog extends StatefulWidget {
 }
 
 class _SafeWebDialogState extends State<SafeWebDialog> {
+  final List<Customer> mockCustomers = [
+    Customer(
+      id: 1,
+      fullName: "Rustam Axmerov",
+      phone: "+998901234567",
+      passport: "AA1234567",
+    ),
+    Customer(
+      id: 2,
+      fullName: "Shoxrux Karimov",
+      phone: "+998933456789",
+      passport: "AB7654321",
+    ),
+    Customer(
+      id: 3,
+      fullName: "Jasmin Abdujalilova",
+      phone: "+998991112233",
+      passport: "AC9988776",
+    ),
+    Customer(
+      id: 4,
+      fullName: "Javohir Qudratov",
+      phone: "+998946667788",
+      passport: "AD4455667",
+    ),
+    Customer(
+      id: 5,
+      fullName: "Shavkat Sapashov",
+      phone: "+998977889900",
+      passport: "AE1122334",
+    ),
+    Customer(
+      id: 6,
+      fullName: "Milena Avanesyan",
+      phone: "+998909876543",
+      passport: "AF5566778",
+    ),
+    Customer(
+      id: 7,
+      fullName: "Asliddin Rustamov",
+      phone: "+998931234890",
+      passport: "AG3344556",
+    ),
+    Customer(
+      id: 8,
+      fullName: "Fayzullo Bahromov",
+      phone: "+998995554433",
+      passport: "AH7788990",
+    ),
+    Customer(
+      id: 9,
+      fullName: "Shoxsanam Shoni",
+      phone: "+998947770011",
+      passport: "AI2233445",
+    ),
+    Customer(
+      id: 10,
+      fullName: "Abdurashid Xamidov",
+      phone: "+998901112233",
+      passport: "AJ6677889",
+    ),
+  ];
   String? selectedCustomer;
   DateTime? startDate;
   DateTime? endDate;
@@ -57,18 +121,7 @@ class _SafeWebDialogState extends State<SafeWebDialog> {
                   border: Border.all(color: Colors.grey.shade300),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: widget.customers
-                      .where((c) => c.toLowerCase().contains(searchQuery.toLowerCase()))
-                      .map((customer) => RadioListTile<String>(
-                    title: Text(customer),
-                    value: customer,
-                    groupValue: selectedCustomer,
-                    onChanged: (val) => setState(() => selectedCustomer = val),
-                  ))
-                      .toList(),
-                ),
+                child: CustomerSelectPanel(customers: mockCustomers, onSelected: (Customer? value) {  },width: double.infinity,)
               ),
             ),
             const SizedBox(height: 15),

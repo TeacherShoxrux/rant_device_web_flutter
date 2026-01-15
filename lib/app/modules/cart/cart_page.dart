@@ -177,19 +177,6 @@ class _CartPageState extends State<CartPage> {
     if (result != null) {
       // Saqlash logikasi
     }
-
-
-
-    // showDialog(
-    //   context: context,
-    //   builder: (context) =>
-    //   WebResponsiveDialog(customers: [],)
-    //   //     AlertDialog(
-    //   //   title: Text("Muvaffaqiyatli!"),
-    //   //   content: Text("Sizning buyurtmangiz qabul qilindi. Tez orada operator bog'lanadi."),
-    //   //   actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text("OK"))],
-    //   // ),
-    // );
   }
 }
 
